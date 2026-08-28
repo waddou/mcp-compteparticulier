@@ -25,6 +25,19 @@ import { z } from "zod";
 const SITE = "https://compteparticulier.com";
 const CACHE_TTL = 3600; // 1 h de cache edge Cloudflare
 
+/**
+ * Adresses permettant de revendiquer la fiche Glama de ce connecteur.
+ *
+ * Glama distingue deux objets. Un « server », issu d'un crawl GitHub, se
+ * revendique par un glama.json à la racine du dépôt. Un « connector », issu du
+ * registre officiel — notre cas — se revendique en publiant un fichier
+ * /.well-known/glama.json sur le domaine du serveur lui-même. D'où cette route.
+ *
+ * Chaque adresse doit correspondre à un compte Glama existant : une adresse qui
+ * n'en a pas ne permet pas la revendication.
+ */
+const MAINTENEURS_GLAMA = ["ads.particulier.tn@gmail.com"];
+
 interface Env {
   MCP_OBJECT: DurableObjectNamespace;
   // Binding natif de rate-limiting (optionnel : le Worker fonctionne même sans).
@@ -242,6 +255,28 @@ export default {
     if (url.pathname === "/mcp") {
       return CompteParticulierMCP.serve("/mcp").fetch(request, env, ctx);
     }
+    // Revendication de la fiche Glama. Sans ce fichier, la fiche reste issue
+    // d'un import anonyme : impossible d'en corriger le titre, la description
+    // ou d'y faire figurer un lien vers le site.
+    if (url.pathname === "/.well-known/glama.json") {
+      return new Response(
+        JSON.stringify(
+          {
+            $schema: "https://glama.ai/mcp/schemas/connector.json",
+            maintainers: MAINTENEURS_GLAMA.map((email) => ({ email })),
+          },
+          null,
+          2,
+        ) + "\n",
+        {
+          headers: {
+            "content-type": "application/json; charset=utf-8",
+            "cache-control": "public, max-age=300",
+          },
+        },
+      );
+    }
+
     if (url.pathname === "/") {
       return new Response(
         "mcp-compteparticulier — serveur MCP (lecture seule) du catalogue compteparticulier.com.\n\n" +

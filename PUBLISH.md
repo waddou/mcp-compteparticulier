@@ -10,7 +10,7 @@ Repo : https://github.com/waddou/mcp-compteparticulier
 | Dépôt GitHub | ✅ | Public, champ *Website* renseigné, 5 topics |
 | Worker Cloudflare | ✅ | Déployé, protocole MCP vérifié en production et depuis Claude Code |
 | Registre officiel MCP | ✅ | `io.github.waddou/mcp-compteparticulier` 1.0.0, avec `websiteUrl` |
-| **Glama** | ✅ | **Déjà indexé** comme *connector*, repris du registre officiel : https://glama.ai/mcp/connectors/io.github.waddou/mcp-compteparticulier |
+| **Glama** | ✅ | Indexé comme *connector* : https://glama.ai/mcp/connectors/io.github.waddou/mcp-compteparticulier — `/.well-known/glama.json` publié, revendication à finaliser |
 | **PulseMCP** | ✅ | **Rien à faire.** Soumissions suspendues, et leur consigne est explicite : publier au registre officiel suffit, ils reprennent automatiquement |
 | awesome-mcp-servers | ⏳ | PR ouverte : punkpeye/awesome-mcp-servers#13099 |
 | mcp.so | ⏳ | Soumission ouverte : chatmcp/mcpso#3809 |
@@ -24,6 +24,22 @@ monopage : elle renvoie **200 pour n'importe quelle route**, y compris inexistan
 existait. À l'inverse, l'URL Glama devinée par analogie (`/mcp/servers/waddou/…`)
 répondait 404 alors que la fiche existait bel et bien sous `/mcp/connectors/io.github.waddou/…`.
 Vérifier ces annuaires suppose un vrai navigateur.
+
+**Deux objets Glama, deux mécanismes de revendication.** Un *server*, issu d'un crawl
+GitHub, se revendique par un `glama.json` à la racine du dépôt — c'est ce qui est en
+place. Un *connector*, issu du registre officiel, se revendique tout autrement : en
+publiant un fichier `/.well-known/glama.json` **sur le domaine du serveur**, avec le
+schéma `connector.json` et l'adresse d'un compte Glama. Le Worker sert désormais cette
+route ; il ne reste qu'à relancer le flux de revendication sur la fiche.
+
+**Ce qui distingue une fiche mûre d'une fiche neuve.** La comparaison avec
+`mcp-moncompte` est instructive : cette dernière affiche un statut *Healthy*, une date
+de dernier test, des catégories (*Documentation Access*, *Search*), un score de qualité
+des outils (A, 4.1/5) et un lien vers son *Server Listing* issu du crawl GitHub. La
+nôtre affiche *Not tested / Never* et n'a pas encore de listing serveur. Rien de tout
+cela ne se force : ni l'inspecteur Glama — qui se connecte pourtant sans erreur et
+introspecte les 2 outils et la ressource — ni la publication au registre ne déclenchent
+le contrôle de santé. C'est un balayage périodique, et le dépôt n'a que quelques heures.
 
 **La fiche Glama ne porte aucun lien vers compteparticulier.com.** La description le
 mentionne en toute lettres, mais aucun lien cliquable ne pointe vers le site — seulement
