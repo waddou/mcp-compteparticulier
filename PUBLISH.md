@@ -10,7 +10,7 @@ Repo : https://github.com/waddou/mcp-compteparticulier
 | Dépôt GitHub | ✅ | Public, champ *Website* renseigné, 5 topics |
 | Worker Cloudflare | ✅ | Déployé, protocole MCP vérifié en production et depuis Claude Code |
 | Registre officiel MCP | ✅ | `io.github.waddou/mcp-compteparticulier` 1.0.0, avec `websiteUrl` |
-| **Glama** | ✅ | Indexé comme *connector* : https://glama.ai/mcp/connectors/io.github.waddou/mcp-compteparticulier — `/.well-known/glama.json` publié, revendication à finaliser |
+| **Glama** | ⏳ | Indexé comme *connector* ; `/.well-known/glama.json` publié avec l'adresse du compte, confirmée. **Plus rien à faire de notre côté** : la vérification est déclenchée par le robot de Glama |
 | **PulseMCP** | ✅ | **Rien à faire.** Soumissions suspendues, et leur consigne est explicite : publier au registre officiel suffit, ils reprennent automatiquement |
 | awesome-mcp-servers | ⏳ | PR ouverte : punkpeye/awesome-mcp-servers#13099 |
 | mcp.so | ⏳ | Soumission ouverte : chatmcp/mcpso#3809 |
@@ -24,6 +24,15 @@ monopage : elle renvoie **200 pour n'importe quelle route**, y compris inexistan
 existait. À l'inverse, l'URL Glama devinée par analogie (`/mcp/servers/waddou/…`)
 répondait 404 alors que la fiche existait bel et bien sous `/mcp/connectors/io.github.waddou/…`.
 Vérifier ces annuaires suppose un vrai navigateur.
+
+**L'API Glama ne sert à rien pour revendiquer.** Sa référence complète n'expose que des
+lectures — `GET /v1/servers`, `GET /v1/connectors`, `GET /v1/instances` — plus un unique
+`POST /v1/telemetry/usage`. Aucun endpoint de revendication, de test de santé ni de
+compte : `/test`, `/verify`, `/claim` et `/refresh` répondent tous 404 sur un connecteur.
+La revendication passe exclusivement par le fichier `/.well-known`, que le robot vient
+lire de lui-même. Une clé d'API permet en revanche de suivre l'état exact du connecteur,
+les champs utiles (`attributes`, `healthy`, `toolCount`, `lastTestedAt`) n'étant pas
+servis sans authentification.
 
 **Deux objets Glama, deux mécanismes de revendication.** Un *server*, issu d'un crawl
 GitHub, se revendique par un `glama.json` à la racine du dépôt — c'est ce qui est en
