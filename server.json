@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.waddou/mcp-compteparticulier",
+  "description": "Recherche et lecture des guides de connexion « mon compte » de compteparticulier.com (MCP, lecture seule).",
+  "version": "1.0.0",
+  "websiteUrl": "https://compteparticulier.com",
+  "repository": {
+    "url": "https://github.com/waddou/mcp-compteparticulier",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp-compteparticulier.ads-particulier-tn.workers.dev/mcp"
+    }
+  ]
+}

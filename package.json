@@ -1,0 +1,23 @@
+{
+  "name": "mcp-compteparticulier",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Serveur MCP (lecture seule) exposant le catalogue de guides de connexion de compteparticulier.com aux agents IA, sur Cloudflare Workers.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.29.0",
+    "agents": "0.0.80",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "4.20260617.1",
+    "typescript": "5.9.3",
+    "wrangler": "4.101.0"
+  }
+}
