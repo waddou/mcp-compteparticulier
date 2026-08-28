@@ -26,7 +26,7 @@
 ## Descriptions
 
 **Courte (≤ 100 car.)**
-> Recherche et lecture des guides de connexion « mon compte » de compteparticulier.com (MCP, lecture seule).
+> Guides de connexion aux espaces clients français de compteparticulier.com (MCP, lecture seule).
 
 **Longue**
 > Serveur MCP en lecture seule qui expose le catalogue de compteparticulier.com — des guides
