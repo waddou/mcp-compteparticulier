@@ -12,12 +12,19 @@ Repo : https://github.com/waddou/mcp-compteparticulier
 | Registre officiel MCP | ✅ | `io.github.waddou/mcp-compteparticulier` 1.0.0, avec `websiteUrl` |
 | awesome-mcp-servers | ⏳ | PR ouverte : punkpeye/awesome-mcp-servers#13099 |
 | mcp.so | ⏳ | Soumission ouverte : chatmcp/mcpso#3809 |
-| Glama | 🔸 | `glama.json` en place — **reste à finaliser la revendication sur glama.ai** |
-| PulseMCP | 🔸 | Indexé automatiquement — **reste à revendiquer la fiche** |
-| Smithery | 🔸 | **Reste à référencer comme serveur distant** |
+| Smithery | ✅ | Fiche créée automatiquement depuis le registre : https://smithery.ai/server/io.github.waddou/mcp-compteparticulier |
+| Glama | ⏳ | `glama.json` en place ; **pas encore indexé** — la revendication ne sera possible qu'une fois la fiche créée |
+| PulseMCP | 🔸 | À revendiquer (vérification impossible sans navigateur, le site refuse les requêtes automatisées) |
 
-Les trois dernières lignes demandent une authentification dans un navigateur et ne
-peuvent pas être automatisées.
+Les deux dernières lignes demandent une authentification dans un navigateur.
+
+L'hypothèse de départ s'est vérifiée : **Smithery a repris la fiche tout seul depuis le
+registre officiel**, sans aucune démarche. Glama, en revanche, crawle GitHub à son
+propre rythme — l'URL attendue,
+`https://glama.ai/mcp/servers/waddou/mcp-compteparticulier`, répondait encore 404
+quelques heures après la création du dépôt, alors que celle de `mcp-moncompte` existe.
+Il faut donc attendre l'indexation avant de pouvoir revendiquer : le flux « Claim »
+suppose une fiche existante.
 
 > Smithery, Glama et PulseMCP **lisent le registre officiel**. La publication qui y a
 > été faite améliore donc mécaniquement leurs fiches, même avant revendication. Ce que
