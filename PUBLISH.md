@@ -3,6 +3,27 @@
 URL du serveur : `https://mcp-compteparticulier.ads-particulier-tn.workers.dev/mcp` (+ `/sse`).
 Repo : https://github.com/waddou/mcp-compteparticulier
 
+## État au 28 août 2026
+
+| Annuaire | État | Détail |
+|---|---|---|
+| Dépôt GitHub | ✅ | Public, champ *Website* renseigné, 5 topics |
+| Worker Cloudflare | ✅ | Déployé, protocole MCP vérifié en production |
+| Registre officiel MCP | ✅ | `io.github.waddou/mcp-compteparticulier` 1.0.0, avec `websiteUrl` |
+| awesome-mcp-servers | ⏳ | PR ouverte : punkpeye/awesome-mcp-servers#13099 |
+| mcp.so | ⏳ | Soumission ouverte : chatmcp/mcpso#3809 |
+| Glama | 🔸 | `glama.json` en place — **reste à finaliser la revendication sur glama.ai** |
+| PulseMCP | 🔸 | Indexé automatiquement — **reste à revendiquer la fiche** |
+| Smithery | 🔸 | **Reste à référencer comme serveur distant** |
+
+Les trois dernières lignes demandent une authentification dans un navigateur et ne
+peuvent pas être automatisées.
+
+> Smithery, Glama et PulseMCP **lisent le registre officiel**. La publication qui y a
+> été faite améliore donc mécaniquement leurs fiches, même avant revendication. Ce que
+> la revendication apporte en plus, c'est la maîtrise du titre, de la description et
+> des liens — au lieu d'une fiche issue d'un crawl anonyme.
+
 ## a) Dépôt GitHub
 
 Créer le dépôt public, puis renseigner **deux** choses souvent oubliées :
